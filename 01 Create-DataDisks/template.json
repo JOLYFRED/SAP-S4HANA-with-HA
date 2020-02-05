@@ -1,0 +1,339 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "disks_hanavm1log_name": {
+            "defaultValue": "hanavm1log",
+            "type": "String"
+        },
+        "disks_hanavm2log_name": {
+            "defaultValue": "hanavm2log",
+            "type": "String"
+        },
+        "disks_jbvm1_bits_name": {
+            "defaultValue": "jbvm1_bits",
+            "type": "String"
+        },
+        "disks_hanavm1data_name": {
+            "defaultValue": "hanavm1data",
+            "type": "String"
+        },
+        "disks_hanavm2data_name": {
+            "defaultValue": "hanavm2data",
+            "type": "String"
+        },
+        "disks_aasvm1_usrsap_name": {
+            "defaultValue": "aasvm1_usrsap",
+            "type": "String"
+        },
+        "disks_hanavm1backup_name": {
+            "defaultValue": "hanavm1backup",
+            "type": "String"
+        },
+        "disks_hanavm1shared_name": {
+            "defaultValue": "hanavm1shared",
+            "type": "String"
+        },
+        "disks_hanavm2backup_name": {
+            "defaultValue": "hanavm2backup",
+            "type": "String"
+        },
+        "disks_hanavm2shared_name": {
+            "defaultValue": "hanavm2shared",
+            "type": "String"
+        },
+        "disks_nfsvm1_sapmnt_name": {
+            "defaultValue": "nfsvm1_sapmnt",
+            "type": "String"
+        },
+        "disks_nfsvm2_sapmnt_name": {
+            "defaultValue": "nfsvm2_sapmnt",
+            "type": "String"
+        },
+        "disks_pasvm1_usrsap_name": {
+            "defaultValue": "pasvm1_usrsap",
+            "type": "String"
+        },
+        "disks_ascsvm1_usrsap_name": {
+            "defaultValue": "ascsvm1_usrsap",
+            "type": "String"
+        },
+        "disks_ascsvm2_usrsap_name": {
+            "defaultValue": "ascsvm2_usrsap",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_aasvm1_usrsap_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 256,
+                "diskIOPSReadWrite": 1100,
+                "diskMBpsReadWrite": 125
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_ascsvm1_usrsap_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 256,
+                "diskIOPSReadWrite": 1100,
+                "diskMBpsReadWrite": 125
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_ascsvm2_usrsap_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 256,
+                "diskIOPSReadWrite": 1100,
+                "diskMBpsReadWrite": 125
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_hanavm1backup_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 1023,
+                "diskIOPSReadWrite": 5000,
+                "diskMBpsReadWrite": 200
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_hanavm1data_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 1023,
+                "diskIOPSReadWrite": 5000,
+                "diskMBpsReadWrite": 200
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_hanavm1log_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 512,
+                "diskIOPSReadWrite": 2300,
+                "diskMBpsReadWrite": 150
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_hanavm1shared_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 512,
+                "diskIOPSReadWrite": 2300,
+                "diskMBpsReadWrite": 150
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_hanavm2backup_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 1023,
+                "diskIOPSReadWrite": 5000,
+                "diskMBpsReadWrite": 200
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_hanavm2data_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 1023,
+                "diskIOPSReadWrite": 5000,
+                "diskMBpsReadWrite": 200
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_hanavm2log_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 512,
+                "diskIOPSReadWrite": 2300,
+                "diskMBpsReadWrite": 150
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_hanavm2shared_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 512,
+                "diskIOPSReadWrite": 2300,
+                "diskMBpsReadWrite": 150
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_jbvm1_bits_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 512,
+                "diskIOPSReadWrite": 2300,
+                "diskMBpsReadWrite": 150
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_nfsvm1_sapmnt_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 256,
+                "diskIOPSReadWrite": 1100,
+                "diskMBpsReadWrite": 125
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_nfsvm2_sapmnt_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 256,
+                "diskIOPSReadWrite": 1100,
+                "diskMBpsReadWrite": 125
+            }
+        },
+        {
+            "type": "Microsoft.Compute/disks",
+            "apiVersion": "2018-06-01",
+            "name": "[parameters('disks_pasvm1_usrsap_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            },
+            "properties": {
+                "creationData": {
+                    "createOption": "Empty"
+                },
+                "diskSizeGB": 256,
+                "diskIOPSReadWrite": 1100,
+                "diskMBpsReadWrite": 125
+            }
+        }
+    ]
+}
