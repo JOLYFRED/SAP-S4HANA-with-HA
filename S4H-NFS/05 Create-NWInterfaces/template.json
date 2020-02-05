@@ -1,0 +1,649 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "networkInterfaces_jbvm1230_name": {
+            "defaultValue": "jbvm1230",
+            "type": "String"
+        },
+        "networkInterfaces_nfsvm1755_name": {
+            "defaultValue": "nfsvm1755",
+            "type": "String"
+        },
+        "networkInterfaces_nfsvm2851_name": {
+            "defaultValue": "nfsvm2851",
+            "type": "String"
+        },
+        "networkInterfaces_pasvm1161_name": {
+            "defaultValue": "pasvm1161",
+            "type": "String"
+        },
+        "networkInterfaces_ascsvm1882_name": {
+            "defaultValue": "ascsvm1882",
+            "type": "String"
+        },
+        "networkInterfaces_ascsvm2981_name": {
+            "defaultValue": "ascsvm2981",
+            "type": "String"
+        },
+        "networkInterfaces_hanavm1281_name": {
+            "defaultValue": "hanavm1281",
+            "type": "String"
+        },
+        "networkInterfaces_hanavm2281_name": {
+            "defaultValue": "hanavm2281",
+            "type": "String"
+        },
+        "networkInterfaces_iscsivm1638_name": {
+            "defaultValue": "iscsivm1638",
+            "type": "String"
+        },
+        "networkInterfaces_iscsivm2638_name": {
+            "defaultValue": "iscsivm2638",
+            "type": "String"
+        },
+        "networkInterfaces_iscsivm3638_name": {
+            "defaultValue": "iscsivm3638",
+            "type": "String"
+        },
+        "publicIPAddresses_ascsvm1_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/ascsvm1-ip",
+            "type": "String"
+        },
+        "virtualNetworks_sachin_demo_vnet_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/virtualNetworks/sachin-demo-vnet",
+            "type": "String"
+        },
+        "loadBalancers_demo_app_ilb_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/loadBalancers/demo-app-ilb",
+            "type": "String"
+        },
+        "networkSecurityGroups_ascsvm1_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/ascsvm1-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_ascsvm2_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/ascsvm2-ip",
+            "type": "String"
+        },
+        "networkSecurityGroups_ascsvm2_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/ascsvm2-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_hanavm1_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/hanavm1-ip",
+            "type": "String"
+        },
+        "loadBalancers_demo_db_ilb_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/loadBalancers/demo-db-ilb",
+            "type": "String"
+        },
+        "networkSecurityGroups_hanavm1_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/hanavm1-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_hanavm2_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/hanavm2-ip",
+            "type": "String"
+        },
+        "networkSecurityGroups_hanavm2_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/hanavm2-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_iscsivm1_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/iscsivm1-ip",
+            "type": "String"
+        },
+        "networkSecurityGroups_iscsivm1_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/iscsivm1-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_iscsivm2_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/iscsivm2-ip",
+            "type": "String"
+        },
+        "networkSecurityGroups_iscsivm2_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/iscsivm2-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_iscsivm3_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/iscsivm3-ip",
+            "type": "String"
+        },
+        "networkSecurityGroups_iscsivm3_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/iscsivm3-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_jbvm1_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/jbvm1-ip",
+            "type": "String"
+        },
+        "networkSecurityGroups_jbvm1_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/jbvm1-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_nfsvm1_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/nfsvm1-ip",
+            "type": "String"
+        },
+        "loadBalancers_demo_nfs_ilb_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/loadBalancers/demo-nfs-ilb",
+            "type": "String"
+        },
+        "networkSecurityGroups_nfsvm1_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/nfsvm1-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_nfsvm2_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/nfsvm2-ip",
+            "type": "String"
+        },
+        "networkSecurityGroups_nfsvm2_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/nfsvm2-nsg",
+            "type": "String"
+        },
+        "publicIPAddresses_pasvm1_ip_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/publicIPAddresses/pasvm1-ip",
+            "type": "String"
+        },
+        "networkSecurityGroups_pasvm1_nsg_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkSecurityGroups/pasvm1-nsg",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_ascsvm1882_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "67e2e154-a585-49ec-9215-52a4a28e3f85",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"fab5cb5d-cf2c-42df-ac7f-d6568d676907\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_ascsvm1_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(parameters('loadBalancers_demo_app_ilb_externalid'), '/backendAddressPools/sgh-ascs-backpool')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6D-DD-5A",
+                "enableAcceleratedNetworking": true,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_ascsvm1_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_ascsvm2981_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "c25ce4ba-504f-41f9-b8e4-ed16b3148ab9",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"44e145e6-3e2c-4b2f-acbb-ad5b32383199\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.6",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_ascsvm2_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(parameters('loadBalancers_demo_app_ilb_externalid'), '/backendAddressPools/sgh-ascs-backpool')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6D-1F-9D",
+                "enableAcceleratedNetworking": true,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_ascsvm2_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_hanavm1281_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "f6e1bee3-bcc3-4f0a-9ea0-7ecd5613c562",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"d6612428-32f0-494b-865d-2519dcf9a176\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.1.4",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_hanavm1_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/database')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(parameters('loadBalancers_demo_db_ilb_externalid'), '/backendAddressPools/hana-backpool')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6D-66-5A",
+                "enableAcceleratedNetworking": true,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_hanavm1_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_hanavm2281_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "c2d9f313-6c94-4ba6-98ae-46b6b5a33ad4",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"89d9ddd2-0611-4b16-81ca-69e7b2dd65c8\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.1.6",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_hanavm2_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/database')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(parameters('loadBalancers_demo_db_ilb_externalid'), '/backendAddressPools/hana-backpool')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6D-20-00",
+                "enableAcceleratedNetworking": true,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_hanavm2_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_iscsivm1638_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "f1c0f24c-a7c8-4cdd-bef7-bceec611f258",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"8da3e51f-944c-41a5-b863-f622dcae6d4a\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.10",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_iscsivm1_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6D-F2-83",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_iscsivm1_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_iscsivm2638_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "49a2fbdb-a03d-406b-951a-c547e1348ec7",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"459aef1e-7e3a-4201-853d-47ea22470d31\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.11",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_iscsivm2_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6E-3F-24",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_iscsivm2_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_iscsivm3638_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "9c8eb7bc-a2bd-4d6a-a22b-8edcec0a38f2",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"9fc2440a-cbd2-4318-8cc4-2d275df66509\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.12",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_iscsivm3_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6D-32-12",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_iscsivm3_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_jbvm1230_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "7ee0e5f4-1802-41ed-9640-fe02128a1862",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"f473b899-6d30-4486-974b-d28f0dee0168\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.9",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_jbvm1_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6C-E5-86",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_jbvm1_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_nfsvm1755_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "2f783b97-b452-4705-862c-41c00f234441",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"6eedc36b-37fe-4a83-9019-8ceb38412025\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.7",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_nfsvm1_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(parameters('loadBalancers_demo_nfs_ilb_externalid'), '/backendAddressPools/nfs-backend')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6D-7D-D1",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_nfsvm1_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_nfsvm2851_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "57f0b766-3bba-4f72-a278-30e7aac2975b",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"8ec057c6-3c10-4faf-8c26-02c2a2324ae8\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.8",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_nfsvm2_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(parameters('loadBalancers_demo_nfs_ilb_externalid'), '/backendAddressPools/nfs-backend')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6D-BD-73",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_nfsvm2_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('networkInterfaces_pasvm1161_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "d7e56c7a-2299-467d-bc0d-8845739111f2",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"97aba863-86b3-402b-8ae8-a9b889071435\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.13",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[parameters('publicIPAddresses_pasvm1_ip_externalid')]"
+                            },
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "nam0mjt1gkdurg4k2eps0luimg.xx.internal.cloudapp.net"
+                },
+                "macAddress": "00-0D-3A-6E-0C-6D",
+                "enableAcceleratedNetworking": true,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroups_pasvm1_nsg_externalid')]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        }
+    ]
+}

@@ -1,0 +1,79 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworks_sachin_demo_vnet_name": {
+            "defaultValue": "sachin-demo-vnet",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('virtualNetworks_sachin_demo_vnet_name')]",
+            "location": "westus2",
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "26a61968-327b-4887-9bca-e11f2d2e8866",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.12.0.0/16"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "application",
+                        "etag": "W/\"5a4e5df6-1d40-441d-b4e3-3ee6b0274662\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.12.0.0/24",
+                            "delegations": []
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "etag": "W/\"5a4e5df6-1d40-441d-b4e3-3ee6b0274662\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.12.1.0/24",
+                            "serviceEndpoints": [],
+                            "delegations": []
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": false,
+                "enableVmProtection": false
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2018-12-01",
+            "name": "[concat(parameters('virtualNetworks_sachin_demo_vnet_name'), '/application')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_sachin_demo_vnet_name'))]"
+            ],
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.12.0.0/24",
+                "delegations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "apiVersion": "2018-12-01",
+            "name": "[concat(parameters('virtualNetworks_sachin_demo_vnet_name'), '/database')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_sachin_demo_vnet_name'))]"
+            ],
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.12.1.0/24",
+                "serviceEndpoints": [],
+                "delegations": []
+            }
+        }
+    ]
+}

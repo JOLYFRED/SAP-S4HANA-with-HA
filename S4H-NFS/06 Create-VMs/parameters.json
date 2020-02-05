@@ -1,0 +1,162 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_jbvm1_name": {
+            "value": null
+        },
+        "virtualMachines_nfsvm1_name": {
+            "value": null
+        },
+        "virtualMachines_nfsvm2_name": {
+            "value": null
+        },
+        "virtualMachines_pasvm1_name": {
+            "value": null
+        },
+        "virtualMachines_ascsvm1_name": {
+            "value": null
+        },
+        "virtualMachines_ascsvm2_name": {
+            "value": null
+        },
+        "virtualMachines_hanavm1_name": {
+            "value": null
+        },
+        "virtualMachines_hanavm2_name": {
+            "value": null
+        },
+        "virtualMachines_iscsivm1_name": {
+            "value": null
+        },
+        "virtualMachines_iscsivm2_name": {
+            "value": null
+        },
+        "virtualMachines_iscsivm3_name": {
+            "value": null
+        },
+        "availabilitySets_DEMO_APP_AVSET_externalid": {
+            "value": null
+        },
+        "disks_ascsvm1_OsDisk_1_db9a0a53ca1f4e3cb08239e18e51dfa9_externalid": {
+            "value": null
+        },
+        "disks_ascsvm1_usrsap_externalid": {
+            "value": null
+        },
+        "networkInterfaces_ascsvm1882_externalid": {
+            "value": null
+        },
+        "disks_ascsvm2_OsDisk_1_40c9f31f3ad0437581b5216c3c90c824_externalid": {
+            "value": null
+        },
+        "disks_ascsvm2_usrsap_externalid": {
+            "value": null
+        },
+        "networkInterfaces_ascsvm2981_externalid": {
+            "value": null
+        },
+        "availabilitySets_DEMO_DB_AVSET_externalid": {
+            "value": null
+        },
+        "disks_hanavm1_OsDisk_1_be51459e7e194008914b1623f7058372_externalid": {
+            "value": null
+        },
+        "disks_hanavm1data_externalid": {
+            "value": null
+        },
+        "disks_hanavm1log_externalid": {
+            "value": null
+        },
+        "disks_hanavm1shared_externalid": {
+            "value": null
+        },
+        "disks_hanavm1backup_externalid": {
+            "value": null
+        },
+        "networkInterfaces_hanavm1281_externalid": {
+            "value": null
+        },
+        "disks_hanavm2_OsDisk_1_e4a8a797438e4cf383889ec44d1d1e1f_externalid": {
+            "value": null
+        },
+        "disks_hanavm2data_externalid": {
+            "value": null
+        },
+        "disks_hanavm2log_externalid": {
+            "value": null
+        },
+        "disks_hanavm2shared_externalid": {
+            "value": null
+        },
+        "disks_hanavm2backup_externalid": {
+            "value": null
+        },
+        "networkInterfaces_hanavm2281_externalid": {
+            "value": null
+        },
+        "availabilitySets_DEMO_ISCSI_AVSET_externalid": {
+            "value": null
+        },
+        "disks_iscsivm1_OsDisk_1_c24b45ce21384d74b9d5228cc7eba407_externalid": {
+            "value": null
+        },
+        "networkInterfaces_iscsivm1638_externalid": {
+            "value": null
+        },
+        "disks_iscsivm2_OsDisk_1_c33d23040f654fa0810fc151fe296cdd_externalid": {
+            "value": null
+        },
+        "networkInterfaces_iscsivm2638_externalid": {
+            "value": null
+        },
+        "disks_iscsivm3_OsDisk_1_32d562ef4db24097aad091bbc5d96911_externalid": {
+            "value": null
+        },
+        "networkInterfaces_iscsivm3638_externalid": {
+            "value": null
+        },
+        "disks_jbvm1_OsDisk_1_386eab6b56d8477a91ab61988029da90_externalid": {
+            "value": null
+        },
+        "disks_jbvm1_bits_externalid": {
+            "value": null
+        },
+        "networkInterfaces_jbvm1230_externalid": {
+            "value": null
+        },
+        "availabilitySets_DEMO_NFS_AVSET_externalid": {
+            "value": null
+        },
+        "disks_nfsvm1_OsDisk_1_2b03fcc6d1aa436fa5b7b817fda03c1a_externalid": {
+            "value": null
+        },
+        "disks_nfsvm1_sapmnt_externalid": {
+            "value": null
+        },
+        "networkInterfaces_nfsvm1755_externalid": {
+            "value": null
+        },
+        "disks_nfsvm2_OsDisk_1_3b3e037eedf9442a88ad1ae619ecf0be_externalid": {
+            "value": null
+        },
+        "disks_nfsvm2_sapmnt_externalid": {
+            "value": null
+        },
+        "networkInterfaces_nfsvm2851_externalid": {
+            "value": null
+        },
+        "availabilitySets_DEMO_DIA_AVSET_externalid": {
+            "value": null
+        },
+        "disks_pasvm1_OsDisk_1_0f06521659f64f67b2d547955a4cb448_externalid": {
+            "value": null
+        },
+        "disks_pasvm1_usrsap_externalid": {
+            "value": null
+        },
+        "networkInterfaces_pasvm1161_externalid": {
+            "value": null
+        }
+    }
+}

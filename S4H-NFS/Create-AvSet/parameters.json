@@ -1,0 +1,54 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "availabilitySets_demo_db_avset_name": {
+            "value": null
+        },
+        "availabilitySets_demo_app_avset_name": {
+            "value": null
+        },
+        "availabilitySets_demo_dia_avset_name": {
+            "value": null
+        },
+        "availabilitySets_demo_nfs_avset_name": {
+            "value": null
+        },
+        "availabilitySets_demo_iscsi_avset_name": {
+            "value": null
+        },
+        "virtualMachines_ASCSVM1_externalid": {
+            "value": null
+        },
+        "virtualMachines_ASCSVM2_externalid": {
+            "value": null
+        },
+        "virtualMachines_HANAVM1_externalid": {
+            "value": null
+        },
+        "virtualMachines_HANAVM2_externalid": {
+            "value": null
+        },
+        "virtualMachines_AASVM1_externalid": {
+            "value": null
+        },
+        "virtualMachines_PASVM1_externalid": {
+            "value": null
+        },
+        "virtualMachines_ISCSIVM1_externalid": {
+            "value": null
+        },
+        "virtualMachines_ISCSIVM2_externalid": {
+            "value": null
+        },
+        "virtualMachines_ISCSIVM3_externalid": {
+            "value": null
+        },
+        "virtualMachines_NFSVM1_externalid": {
+            "value": null
+        },
+        "virtualMachines_NFSVM2_externalid": {
+            "value": null
+        }
+    }
+}

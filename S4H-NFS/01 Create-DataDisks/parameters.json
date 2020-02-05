@@ -1,0 +1,51 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "disks_hanavm1log_name": {
+            "value": null
+        },
+        "disks_hanavm2log_name": {
+            "value": null
+        },
+        "disks_jbvm1_bits_name": {
+            "value": null
+        },
+        "disks_hanavm1data_name": {
+            "value": null
+        },
+        "disks_hanavm2data_name": {
+            "value": null
+        },
+        "disks_aasvm1_usrsap_name": {
+            "value": null
+        },
+        "disks_hanavm1backup_name": {
+            "value": null
+        },
+        "disks_hanavm1shared_name": {
+            "value": null
+        },
+        "disks_hanavm2backup_name": {
+            "value": null
+        },
+        "disks_hanavm2shared_name": {
+            "value": null
+        },
+        "disks_nfsvm1_sapmnt_name": {
+            "value": null
+        },
+        "disks_nfsvm2_sapmnt_name": {
+            "value": null
+        },
+        "disks_pasvm1_usrsap_name": {
+            "value": null
+        },
+        "disks_ascsvm1_usrsap_name": {
+            "value": null
+        },
+        "disks_ascsvm2_usrsap_name": {
+            "value": null
+        }
+    }
+}

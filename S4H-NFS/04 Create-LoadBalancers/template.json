@@ -1,0 +1,664 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "loadBalancers_demo_db_ilb_name": {
+            "defaultValue": "demo-db-ilb",
+            "type": "String"
+        },
+        "loadBalancers_demo_app_ilb_name": {
+            "defaultValue": "demo-app-ilb",
+            "type": "String"
+        },
+        "loadBalancers_demo_nfs_ilb_name": {
+            "defaultValue": "demo-nfs-ilb",
+            "type": "String"
+        },
+        "virtualNetworks_sachin_demo_vnet_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/virtualNetworks/sachin-demo-vnet",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/loadBalancers",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('loadBalancers_demo_app_ilb_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "3155ddb3-5dc9-4e29-9fa2-96442956381a",
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.5",
+                            "privateIPAllocationMethod": "Static",
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sgh-ers-ilb",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.50",
+                            "privateIPAllocationMethod": "Static",
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "sgh-ascs-backpool",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "sgh-lb-3200",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 3200,
+                            "backendPort": 3200,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ascs-62000')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sgh-lb-3600",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 3600,
+                            "backendPort": 3600,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ascs-62000')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sgh-lb-3900",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 3900,
+                            "backendPort": 3900,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ascs-62000')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sgh-lb-50013",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 50013,
+                            "backendPort": 50013,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ascs-62000')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sgh-lb-50014",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 50014,
+                            "backendPort": 50014,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ascs-62000')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sgh-lb-50016",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 50016,
+                            "backendPort": 50016,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ascs-62000')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "sgh-lb-8100",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 8100,
+                            "backendPort": 8100,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ascs-62000')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ers-lb-3302",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/sgh-ers-ilb')]"
+                            },
+                            "frontendPort": 3302,
+                            "backendPort": 3302,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ers-62102')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ers-lb-50213",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/sgh-ers-ilb')]"
+                            },
+                            "frontendPort": 50213,
+                            "backendPort": 50213,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ers-62102')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ers-lb-50214",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/sgh-ers-ilb')]"
+                            },
+                            "frontendPort": 50214,
+                            "backendPort": 50214,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ers-62102')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ers-lb-50216",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/sgh-ers-ilb')]"
+                            },
+                            "frontendPort": 50216,
+                            "backendPort": 50216,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ers-62102')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "ers-lb-3202",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 3202,
+                            "backendPort": 3202,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/backendAddressPools/sgh-ascs-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_app_ilb_name')), '/probes/ers-62102')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "ers-62102",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "Tcp",
+                            "port": 62102,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    },
+                    {
+                        "name": "ascs-62000",
+                        "etag": "W/\"0f1ce7d0-3f3c-4b05-9a3b-07e80d87435d\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "Tcp",
+                            "port": 62000,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ],
+                "inboundNatRules": [],
+                "inboundNatPools": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/loadBalancers",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('loadBalancers_demo_db_ilb_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "0d3d877b-e3ca-477d-a202-8550dff18712",
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "etag": "W/\"a4028943-c6ca-44cf-84a8-ea0c94d9cf1f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.1.5",
+                            "privateIPAllocationMethod": "Static",
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/database')]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "hana-backpool",
+                        "etag": "W/\"a4028943-c6ca-44cf-84a8-ea0c94d9cf1f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "hana-lb-30013",
+                        "etag": "W/\"a4028943-c6ca-44cf-84a8-ea0c94d9cf1f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 30013,
+                            "backendPort": 30013,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "disableOutboundSnat": false,
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/backendAddressPools/hana-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/probes/hana-hp')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "hana-lb-30014",
+                        "etag": "W/\"a4028943-c6ca-44cf-84a8-ea0c94d9cf1f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 30014,
+                            "backendPort": 30014,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "disableOutboundSnat": false,
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/backendAddressPools/hana-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/probes/hana-hp')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "hana-lb30003-tenantdb",
+                        "etag": "W/\"a4028943-c6ca-44cf-84a8-ea0c94d9cf1f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 30003,
+                            "backendPort": 30003,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "disableOutboundSnat": false,
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/backendAddressPools/hana-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/probes/hana-hp')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "hana-lb-30007-tenantdb",
+                        "etag": "W/\"a4028943-c6ca-44cf-84a8-ea0c94d9cf1f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 30007,
+                            "backendPort": 30007,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "disableOutboundSnat": false,
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/backendAddressPools/hana-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/probes/hana-hp')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "hana-lb-50013",
+                        "etag": "W/\"a4028943-c6ca-44cf-84a8-ea0c94d9cf1f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 50013,
+                            "backendPort": 50013,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "disableOutboundSnat": false,
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/backendAddressPools/hana-backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_db_ilb_name')), '/probes/hana-hp')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "hana-hp",
+                        "etag": "W/\"a4028943-c6ca-44cf-84a8-ea0c94d9cf1f\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "Tcp",
+                            "port": 62500,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ],
+                "inboundNatRules": [],
+                "outboundRules": [],
+                "inboundNatPools": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/loadBalancers",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('loadBalancers_demo_nfs_ilb_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "8ad1df46-b5e6-4bab-b16f-4f94ca46b27d",
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "etag": "W/\"843e7397-4b2d-4d7e-ae5d-43b9da5d7827\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "privateIPAddress": "10.12.0.51",
+                            "privateIPAllocationMethod": "Static",
+                            "subnet": {
+                                "id": "[concat(parameters('virtualNetworks_sachin_demo_vnet_externalid'), '/subnets/application')]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "nfs-backend",
+                        "etag": "W/\"843e7397-4b2d-4d7e-ae5d-43b9da5d7827\"",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "nfs-lb-udp2049",
+                        "etag": "W/\"843e7397-4b2d-4d7e-ae5d-43b9da5d7827\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_nfs_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 2049,
+                            "backendPort": 2049,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Udp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_nfs_ilb_name')), '/backendAddressPools/nfs-backend')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_nfs_ilb_name')), '/probes/nfs-ascs-healthprobe')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "fs-lb-2049",
+                        "etag": "W/\"843e7397-4b2d-4d7e-ae5d-43b9da5d7827\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "frontendIPConfiguration": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_nfs_ilb_name')), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 2049,
+                            "backendPort": 2049,
+                            "enableFloatingIP": true,
+                            "idleTimeoutInMinutes": 30,
+                            "protocol": "Tcp",
+                            "enableTcpReset": false,
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_nfs_ilb_name')), '/backendAddressPools/nfs-backend')]"
+                            },
+                            "probe": {
+                                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_demo_nfs_ilb_name')), '/probes/nfs-ascs-healthprobe')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "nfs-ascs-healthprobe",
+                        "etag": "W/\"843e7397-4b2d-4d7e-ae5d-43b9da5d7827\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "Tcp",
+                            "port": 61000,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    },
+                    {
+                        "name": "nfs-ers-healthprobe",
+                        "etag": "W/\"843e7397-4b2d-4d7e-ae5d-43b9da5d7827\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "Tcp",
+                            "port": 61001,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ],
+                "inboundNatRules": [],
+                "inboundNatPools": []
+            }
+        }
+    ]
+}

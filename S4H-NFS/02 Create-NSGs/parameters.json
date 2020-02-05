@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "networkSecurityGroups_jbvm1_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_nfsvm1_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_nfsvm2_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_pasvm1_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_ascsvm1_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_ascsvm2_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_hanavm1_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_hanavm2_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_iscsivm1_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_iscsivm2_nsg_name": {
+            "value": null
+        },
+        "networkSecurityGroups_iscsivm3_nsg_name": {
+            "value": null
+        }
+    }
+}

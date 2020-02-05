@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "publicIPAddresses_jbvm1_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_nfsvm1_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_nfsvm2_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_pasvm1_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_ascsvm1_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_ascsvm2_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_hanavm1_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_hanavm2_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_iscsivm1_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_iscsivm2_ip_name": {
+            "value": null
+        },
+        "publicIPAddresses_iscsivm3_ip_name": {
+            "value": null
+        }
+    }
+}

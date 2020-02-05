@@ -1,0 +1,1006 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_jbvm1_name": {
+            "defaultValue": "jbvm1",
+            "type": "String"
+        },
+        "virtualMachines_nfsvm1_name": {
+            "defaultValue": "nfsvm1",
+            "type": "String"
+        },
+        "virtualMachines_nfsvm2_name": {
+            "defaultValue": "nfsvm2",
+            "type": "String"
+        },
+        "virtualMachines_pasvm1_name": {
+            "defaultValue": "pasvm1",
+            "type": "String"
+        },
+        "virtualMachines_ascsvm1_name": {
+            "defaultValue": "ascsvm1",
+            "type": "String"
+        },
+        "virtualMachines_ascsvm2_name": {
+            "defaultValue": "ascsvm2",
+            "type": "String"
+        },
+        "virtualMachines_hanavm1_name": {
+            "defaultValue": "hanavm1",
+            "type": "String"
+        },
+        "virtualMachines_hanavm2_name": {
+            "defaultValue": "hanavm2",
+            "type": "String"
+        },
+        "virtualMachines_iscsivm1_name": {
+            "defaultValue": "iscsivm1",
+            "type": "String"
+        },
+        "virtualMachines_iscsivm2_name": {
+            "defaultValue": "iscsivm2",
+            "type": "String"
+        },
+        "virtualMachines_iscsivm3_name": {
+            "defaultValue": "iscsivm3",
+            "type": "String"
+        },
+        "availabilitySets_demo-app-avset_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/availabilitySets/demo-app-avset",
+            "type": "String"
+        },
+        "disks_ascsvm1_OsDisk_1_db9a0a53ca1f4e3cb08239e18e51dfa9_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/ascsvm1_OsDisk_1_db9a0a53ca1f4e3cb08239e18e51dfa9",
+            "type": "String"
+        },
+        "disks_ascsvm1_usrsap_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/ascsvm1_usrsap",
+            "type": "String"
+        },
+        "networkInterfaces_ascsvm1882_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/ascsvm1882",
+            "type": "String"
+        },
+        "disks_ascsvm2_OsDisk_1_40c9f31f3ad0437581b5216c3c90c824_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/ascsvm2_OsDisk_1_40c9f31f3ad0437581b5216c3c90c824",
+            "type": "String"
+        },
+        "disks_ascsvm2_usrsap_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/ascsvm2_usrsap",
+            "type": "String"
+        },
+        "networkInterfaces_ascsvm2981_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/ascsvm2981",
+            "type": "String"
+        },
+        "availabilitySets_demo-db-avset_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/availabilitySets/demo-db-avset",
+            "type": "String"
+        },
+        "disks_hanavm1_OsDisk_1_be51459e7e194008914b1623f7058372_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm1_OsDisk_1_be51459e7e194008914b1623f7058372",
+            "type": "String"
+        },
+        "disks_hanavm1data_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm1data",
+            "type": "String"
+        },
+        "disks_hanavm1log_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm1log",
+            "type": "String"
+        },
+        "disks_hanavm1shared_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm1shared",
+            "type": "String"
+        },
+        "disks_hanavm1backup_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm1backup",
+            "type": "String"
+        },
+        "networkInterfaces_hanavm1281_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/hanavm1281",
+            "type": "String"
+        },
+        "disks_hanavm2_OsDisk_1_e4a8a797438e4cf383889ec44d1d1e1f_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm2_OsDisk_1_e4a8a797438e4cf383889ec44d1d1e1f",
+            "type": "String"
+        },
+        "disks_hanavm2data_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm2data",
+            "type": "String"
+        },
+        "disks_hanavm2log_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm2log",
+            "type": "String"
+        },
+        "disks_hanavm2shared_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm2shared",
+            "type": "String"
+        },
+        "disks_hanavm2backup_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/hanavm2backup",
+            "type": "String"
+        },
+        "networkInterfaces_hanavm2281_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/hanavm2281",
+            "type": "String"
+        },
+        "availabilitySets_demo-iscsi-avset_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/availabilitySets/demo-iscsi-avset",
+            "type": "String"
+        },
+        "disks_iscsivm1_OsDisk_1_c24b45ce21384d74b9d5228cc7eba407_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/iscsivm1_OsDisk_1_c24b45ce21384d74b9d5228cc7eba407",
+            "type": "String"
+        },
+        "networkInterfaces_iscsivm1638_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/iscsivm1638",
+            "type": "String"
+        },
+        "disks_iscsivm2_OsDisk_1_c33d23040f654fa0810fc151fe296cdd_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/iscsivm2_OsDisk_1_c33d23040f654fa0810fc151fe296cdd",
+            "type": "String"
+        },
+        "networkInterfaces_iscsivm2638_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/iscsivm2638",
+            "type": "String"
+        },
+        "disks_iscsivm3_OsDisk_1_32d562ef4db24097aad091bbc5d96911_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/iscsivm3_OsDisk_1_32d562ef4db24097aad091bbc5d96911",
+            "type": "String"
+        },
+        "networkInterfaces_iscsivm3638_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/iscsivm3638",
+            "type": "String"
+        },
+        "disks_jbvm1_OsDisk_1_386eab6b56d8477a91ab61988029da90_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/jbvm1_OsDisk_1_386eab6b56d8477a91ab61988029da90",
+            "type": "String"
+        },
+        "disks_jbvm1_bits_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/jbvm1_bits",
+            "type": "String"
+        },
+        "networkInterfaces_jbvm1230_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/jbvm1230",
+            "type": "String"
+        },
+        "availabilitySets_demo-nfs-avset_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/availabilitySets/demo-nfs-avset",
+            "type": "String"
+        },
+        "disks_nfsvm1_OsDisk_1_2b03fcc6d1aa436fa5b7b817fda03c1a_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/nfsvm1_OsDisk_1_2b03fcc6d1aa436fa5b7b817fda03c1a",
+            "type": "String"
+        },
+        "disks_nfsvm1_sapmnt_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/nfsvm1_sapmnt",
+            "type": "String"
+        },
+        "networkInterfaces_nfsvm1755_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/nfsvm1755",
+            "type": "String"
+        },
+        "disks_nfsvm2_OsDisk_1_3b3e037eedf9442a88ad1ae619ecf0be_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/nfsvm2_OsDisk_1_3b3e037eedf9442a88ad1ae619ecf0be",
+            "type": "String"
+        },
+        "disks_nfsvm2_sapmnt_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/nfsvm2_sapmnt",
+            "type": "String"
+        },
+        "networkInterfaces_nfsvm2851_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/nfsvm2851",
+            "type": "String"
+        },
+        "availabilitySets_demo-dia-avset_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/availabilitySets/demo-dia-avset",
+            "type": "String"
+        },
+        "disks_pasvm1_OsDisk_1_0f06521659f64f67b2d547955a4cb448_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/pasvm1_OsDisk_1_0f06521659f64f67b2d547955a4cb448",
+            "type": "String"
+        },
+        "disks_pasvm1_usrsap_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/disks/pasvm1_usrsap",
+            "type": "String"
+        },
+        "networkInterfaces_pasvm1161_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Network/networkInterfaces/pasvm1161",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_ascsvm1_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-app-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS12_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_ascsvm1_name'), '_OsDisk_1_db9a0a53ca1f4e3cb08239e18e51dfa9')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_ascsvm1_name'), '_usrsap')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_ascsvm1_usrsap_externalid')]"
+                            },
+                            "diskSizeGB": 256
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_ascsvm1_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_ascsvm1882_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_ascsvm2_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-app-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS12_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_ascsvm2_name'), '_OsDisk_1_40c9f31f3ad0437581b5216c3c90c824')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_ascsvm2_name'), '_usrsap')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_ascsvm2_usrsap_externalid')]"
+                            },
+                            "diskSizeGB": 256
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_ascsvm2_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_ascsvm2981_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_hanavm1_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-db-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_E16s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_hanavm1_name'), '_OsDisk_1_be51459e7e194008914b1623f7058372')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_hanavm1_name'), 'data')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_hanavm1data_externalid')]"
+                            },
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 1,
+                            "name": "[concat(parameters('virtualMachines_hanavm1_name'), 'log')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_hanavm1log_externalid')]"
+                            },
+                            "diskSizeGB": 512
+                        },
+                        {
+                            "lun": 2,
+                            "name": "[concat(parameters('virtualMachines_hanavm1_name'), 'shared')]",
+                            "createOption": "Attach",
+                            "caching": "ReadOnly",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_hanavm1shared_externalid')]"
+                            },
+                            "diskSizeGB": 512
+                        },
+                        {
+                            "lun": 3,
+                            "name": "[concat(parameters('virtualMachines_hanavm1_name'), 'backup')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_hanavm1backup_externalid')]"
+                            },
+                            "diskSizeGB": 1023
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_hanavm1_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_hanavm1281_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_hanavm2_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-db-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_E16s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_hanavm2_name'), '_OsDisk_1_e4a8a797438e4cf383889ec44d1d1e1f')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_hanavm2_name'), 'data')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_hanavm2data_externalid')]"
+                            },
+                            "diskSizeGB": 1023
+                        },
+                        {
+                            "lun": 1,
+                            "name": "[concat(parameters('virtualMachines_hanavm2_name'), 'log')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_hanavm2log_externalid')]"
+                            },
+                            "diskSizeGB": 512
+                        },
+                        {
+                            "lun": 2,
+                            "name": "[concat(parameters('virtualMachines_hanavm2_name'), 'shared')]",
+                            "createOption": "Attach",
+                            "caching": "ReadOnly",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_hanavm2shared_externalid')]"
+                            },
+                            "diskSizeGB": 512
+                        },
+                        {
+                            "lun": 3,
+                            "name": "[concat(parameters('virtualMachines_hanavm2_name'), 'backup')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_hanavm2backup_externalid')]"
+                            },
+                            "diskSizeGB": 1023
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_hanavm2_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_hanavm2281_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_iscsivm1_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-iscsi-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_D2s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_iscsivm1_name'), '_OsDisk_1_c24b45ce21384d74b9d5228cc7eba407')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_iscsivm1_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_iscsivm1638_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_iscsivm2_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-iscsi-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_D2s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_iscsivm2_name'), '_OsDisk_1_c33d23040f654fa0810fc151fe296cdd')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_iscsivm2_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_iscsivm2638_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_iscsivm3_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-iscsi-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_D2s_v3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_iscsivm3_name'), '_OsDisk_1_32d562ef4db24097aad091bbc5d96911')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_iscsivm3_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_iscsivm3638_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_jbvm1_name')]",
+            "location": "westus2",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS1_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "MicrosoftWindowsServer",
+                        "offer": "WindowsServer",
+                        "sku": "2012-R2-Datacenter-smalldisk",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Windows",
+                        "name": "[concat(parameters('virtualMachines_jbvm1_name'), '_OsDisk_1_386eab6b56d8477a91ab61988029da90')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_jbvm1_name'), '_bits')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_jbvm1_bits_externalid')]"
+                            },
+                            "diskSizeGB": 512
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_jbvm1_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "windowsConfiguration": {
+                        "provisionVMAgent": true,
+                        "enableAutomaticUpdates": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_jbvm1230_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_nfsvm1_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-nfs-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS1_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_nfsvm1_name'), '_OsDisk_1_2b03fcc6d1aa436fa5b7b817fda03c1a')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_nfsvm1_name'), '_sapmnt')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_nfsvm1_sapmnt_externalid')]"
+                            },
+                            "diskSizeGB": 256
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_nfsvm1_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_nfsvm1755_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_nfsvm2_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-nfs-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS1_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_nfsvm2_name'), '_OsDisk_1_3b3e037eedf9442a88ad1ae619ecf0be')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_nfsvm2_name'), '_sapmnt')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_nfsvm2_sapmnt_externalid')]"
+                            },
+                            "diskSizeGB": 256
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_nfsvm2_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_nfsvm2851_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('virtualMachines_pasvm1_name')]",
+            "location": "westus2",
+            "properties": {
+                "availabilitySet": {
+                    "id": "[parameters('availabilitySets_demo-dia-avset_externalid')]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_DS12_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "SUSE",
+                        "offer": "SLES-SAP",
+                        "sku": "12-SP3",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_pasvm1_name'), '_OsDisk_1_0f06521659f64f67b2d547955a4cb448')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Standard_LRS"
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "name": "[concat(parameters('virtualMachines_pasvm1_name'), '_usrsap')]",
+                            "createOption": "Attach",
+                            "caching": "None",
+                            "writeAcceleratorEnabled": false,
+                            "managedDisk": {
+                                "storageAccountType": "Premium_LRS",
+                                "id": "[parameters('disks_pasvm1_usrsap_externalid')]"
+                            },
+                            "diskSizeGB": 256
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_pasvm1_name')]",
+                    "adminUsername": "demouser", "adminPassword": "PassWord2019",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_pasvm1161_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://sachindemos4hdiag.blob.core.windows.net/"
+                    }
+                }
+            }
+        }
+    ]
+}
