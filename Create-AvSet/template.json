@@ -1,0 +1,181 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "availabilitySets_demo_db_avset_name": {
+            "defaultValue": "demo-db-avset",
+            "type": "String"
+        },
+        "availabilitySets_demo_app_avset_name": {
+            "defaultValue": "demo-app-avset",
+            "type": "String"
+        },
+        "availabilitySets_demo_dia_avset_name": {
+            "defaultValue": "demo-dia-avset",
+            "type": "String"
+        },
+        "availabilitySets_demo_nfs_avset_name": {
+            "defaultValue": "demo-nfs-avset",
+            "type": "String"
+        },
+        "availabilitySets_demo_iscsi_avset_name": {
+            "defaultValue": "demo-iscsi-avset",
+            "type": "String"
+        },
+        "virtualMachines_ASCSVM1_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/ASCSVM1",
+            "type": "String"
+        },
+        "virtualMachines_ASCSVM2_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/ASCSVM2",
+            "type": "String"
+        },
+        "virtualMachines_HANAVM1_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/HANAVM1",
+            "type": "String"
+        },
+        "virtualMachines_HANAVM2_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/HANAVM2",
+            "type": "String"
+        },
+        "virtualMachines_AASVM1_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/AASVM1",
+            "type": "String"
+        },
+        "virtualMachines_PASVM1_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/PASVM1",
+            "type": "String"
+        },
+        "virtualMachines_ISCSIVM1_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/ISCSIVM1",
+            "type": "String"
+        },
+        "virtualMachines_ISCSIVM2_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/ISCSIVM2",
+            "type": "String"
+        },
+        "virtualMachines_ISCSIVM3_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/ISCSIVM3",
+            "type": "String"
+        },
+        "virtualMachines_NFSVM1_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/NFSVM1",
+            "type": "String"
+        },
+        "virtualMachines_NFSVM2_externalid": {
+            "defaultValue": "/subscriptions/EnterYourSubscription/resourceGroups/EnterYourResourceGroup/providers/Microsoft.Compute/virtualMachines/NFSVM2",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/availabilitySets",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('availabilitySets_demo_app_avset_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Aligned"
+            },
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 2,
+                "virtualMachines": [
+                    {
+                        "id": "[parameters('virtualMachines_ASCSVM1_externalid')]"
+                    },
+                    {
+                        "id": "[parameters('virtualMachines_ASCSVM2_externalid')]"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Compute/availabilitySets",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('availabilitySets_demo_db_avset_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Aligned"
+            },
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 2,
+                "virtualMachines": [
+                    {
+                        "id": "[parameters('virtualMachines_HANAVM1_externalid')]"
+                    },
+                    {
+                        "id": "[parameters('virtualMachines_HANAVM2_externalid')]"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Compute/availabilitySets",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('availabilitySets_demo_dia_avset_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Aligned"
+            },
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 2,
+                "virtualMachines": [
+                    {
+                        "id": "[parameters('virtualMachines_AASVM1_externalid')]"
+                    },
+                    {
+                        "id": "[parameters('virtualMachines_PASVM1_externalid')]"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Compute/availabilitySets",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('availabilitySets_demo_iscsi_avset_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Aligned"
+            },
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 2,
+                "virtualMachines": [
+                    {
+                        "id": "[parameters('virtualMachines_ISCSIVM1_externalid')]"
+                    },
+                    {
+                        "id": "[parameters('virtualMachines_ISCSIVM2_externalid')]"
+                    },
+                    {
+                        "id": "[parameters('virtualMachines_ISCSIVM3_externalid')]"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Compute/availabilitySets",
+            "apiVersion": "2018-10-01",
+            "name": "[parameters('availabilitySets_demo_nfs_avset_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Aligned"
+            },
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 2,
+                "virtualMachines": [
+                    {
+                        "id": "[parameters('virtualMachines_NFSVM1_externalid')]"
+                    },
+                    {
+                        "id": "[parameters('virtualMachines_NFSVM2_externalid')]"
+                    }
+                ]
+            }
+        }
+    ]
+}

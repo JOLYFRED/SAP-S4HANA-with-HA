@@ -1,0 +1,262 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "publicIPAddresses_jbvm1_ip_name": {
+            "defaultValue": "jbvm1-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_nfsvm1_ip_name": {
+            "defaultValue": "nfsvm1-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_nfsvm2_ip_name": {
+            "defaultValue": "nfsvm2-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_pasvm1_ip_name": {
+            "defaultValue": "pasvm1-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_ascsvm1_ip_name": {
+            "defaultValue": "ascsvm1-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_ascsvm2_ip_name": {
+            "defaultValue": "ascsvm2-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_hanavm1_ip_name": {
+            "defaultValue": "hanavm1-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_hanavm2_ip_name": {
+            "defaultValue": "hanavm2-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_iscsivm1_ip_name": {
+            "defaultValue": "iscsivm1-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_iscsivm2_ip_name": {
+            "defaultValue": "iscsivm2-ip",
+            "type": "String"
+        },
+        "publicIPAddresses_iscsivm3_ip_name": {
+            "defaultValue": "iscsivm3-ip",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_ascsvm1_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "914e549d-f1ff-45bd-8c36-102a27e90f37",
+                "ipAddress": "20.190.49.180",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_ascsvm2_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "56b54805-1127-4fb9-88ed-e90fef0d8a3f",
+                "ipAddress": "20.36.20.150",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_hanavm1_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "5becf77d-036f-4929-9377-2c0a7657ef9b",
+                "ipAddress": "51.143.104.173",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_hanavm2_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Standard",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "0de1f993-0191-4f09-903e-7ad092a02420",
+                "ipAddress": "51.143.110.82",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_iscsivm1_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "d30fad59-2c53-4316-92bb-6088d3af9fab",
+                "ipAddress": "20.36.20.140",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_iscsivm2_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "1a83d60d-5b65-4f85-b7fd-cadad4d42bbf",
+                "ipAddress": "40.65.100.89",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_iscsivm3_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "96dd9a2b-037c-4322-aef3-dcd9a9b761b7",
+                "ipAddress": "52.247.193.227",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_jbvm1_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "80931181-0049-4644-99c2-8273cdadcfbe",
+                "ipAddress": "52.191.139.60",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_nfsvm1_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "545ca68b-5ef0-4eb0-ae08-99923080bfd3",
+                "ipAddress": "52.191.173.80",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_nfsvm2_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "160f7a50-4827-4dfe-9552-50cd571bf5cc",
+                "ipAddress": "52.191.164.241",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-12-01",
+            "name": "[parameters('publicIPAddresses_pasvm1_ip_name')]",
+            "location": "westus2",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "107a5d1f-6250-463b-848f-d522865a9041",
+                "ipAddress": "52.183.80.198",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        }
+    ]
+}

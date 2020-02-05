@@ -1,0 +1,117 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "networkInterfaces_jbvm1230_name": {
+            "value": null
+        },
+        "networkInterfaces_nfsvm1755_name": {
+            "value": null
+        },
+        "networkInterfaces_nfsvm2851_name": {
+            "value": null
+        },
+        "networkInterfaces_pasvm1161_name": {
+            "value": null
+        },
+        "networkInterfaces_ascsvm1882_name": {
+            "value": null
+        },
+        "networkInterfaces_ascsvm2981_name": {
+            "value": null
+        },
+        "networkInterfaces_hanavm1281_name": {
+            "value": null
+        },
+        "networkInterfaces_hanavm2281_name": {
+            "value": null
+        },
+        "networkInterfaces_iscsivm1638_name": {
+            "value": null
+        },
+        "networkInterfaces_iscsivm2638_name": {
+            "value": null
+        },
+        "networkInterfaces_iscsivm3638_name": {
+            "value": null
+        },
+        "publicIPAddresses_ascsvm1_ip_externalid": {
+            "value": null
+        },
+        "virtualNetworks_sachin_demo_vnet_externalid": {
+            "value": null
+        },
+        "loadBalancers_demo_app_ilb_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_ascsvm1_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_ascsvm2_ip_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_ascsvm2_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_hanavm1_ip_externalid": {
+            "value": null
+        },
+        "loadBalancers_demo_db_ilb_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_hanavm1_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_hanavm2_ip_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_hanavm2_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_iscsivm1_ip_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_iscsivm1_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_iscsivm2_ip_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_iscsivm2_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_iscsivm3_ip_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_iscsivm3_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_jbvm1_ip_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_jbvm1_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_nfsvm1_ip_externalid": {
+            "value": null
+        },
+        "loadBalancers_demo_nfs_ilb_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_nfsvm1_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_nfsvm2_ip_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_nfsvm2_nsg_externalid": {
+            "value": null
+        },
+        "publicIPAddresses_pasvm1_ip_externalid": {
+            "value": null
+        },
+        "networkSecurityGroups_pasvm1_nsg_externalid": {
+            "value": null
+        }
+    }
+}
